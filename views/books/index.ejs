@@ -1,0 +1,34 @@
+<section class="section">
+    <header class="section_header">
+        <h2 class="section_title">All Books</h2>       
+    </header>
+    <div class="section_content">
+        <form class="form" action="/books" method="GET">
+            <div class="form_field">
+                <label class="form_label">Title</label>
+                <input class="form_input" type="text" name="title" value="<%= searchOptions.title %>">                
+            </div>
+            <div class="form_field">
+                <label class="form_label">Published After</label>
+                <input class="form_input" type="date" name="publishedAfter" value="<%= searchOptions.publishedAfter %>">                
+            </div>
+            <div class="form_field">
+                <label class="form_label">Published Before</label>
+                <input class="form_input" type="date" name="publishedBefore" value="<%= searchOptions.publishedBefore %>">                
+            </div>
+            <button class="button" type="submit">Search</button>
+        </form>
+        <div class="searchResults">
+            <ul class="searchResults_container">
+                <% books.forEach(book => { %>
+                    <li class="searchResults_item">
+                        <img src="<%= book.coverImagePath %>"
+                             alt="<%= book.title %> (Cover)"
+                             width="100px" height="150px"
+                        >
+                    </li>
+                <% }) %>
+            </ul>            
+        </div>
+    </div>
+</section>

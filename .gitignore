@@ -1,2 +1,6 @@
+# Client
+client/uploads
+
+# Project specific
 .env
 node_modules

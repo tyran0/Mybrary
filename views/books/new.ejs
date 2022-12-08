@@ -1,12 +1,12 @@
 <section class="section">
     <header class="section_header">
-        <h2 class="section_title">New Author</h2>      
+        <h2 class="section_title">New Book</h2>       
     </header>
     <div class="section_content">
-        <form class="form" action="/authors" method="POST">
+        <form class="form" action="/books" method="POST" enctype="multipart/form-data">
             <%- include('_form_fields') %> 
-            <a class="button" href="/authors">Cancel</a>
+            <a class="button" href="/books">Cancel</a>
             <button class="button" type="submit">Create</button>
-        </form>        
+        </form>  
     </div>
 </section>

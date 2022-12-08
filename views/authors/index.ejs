@@ -1,17 +1,21 @@
 <section class="section">
-    <div class="section_header">
-        <h2>Search Authors</h2>       
-    </div>
+    <header class="section_header">
+        <h2 class="section_title">Search Authors</h2>       
+    </header>
     <div class="section_content">
-        <form class="form" action="/authors" method="get">
-            <label class="form_label">Name</label>
-            <input class="form_input" type="text" name="name" value="<%= searchOptions.name %>">
+        <form class="form" action="/authors" method="GET">
+            <div class="form_field">
+                <label class="form_label">Name</label>
+                <input class="form_input" type="text" name="name" value="<%= searchOptions.name %>">                
+            </div>
             <button class="button" type="submit">Search</button>
         </form>
-        <ul class="searchResults">
-            <% authors.forEach(author => { %>
-                <li class="searchResults_item" data-id="-1"><%= author.name %></li>
-            <% }) %>
-        </ul>        
+        <div class="searchResults">
+            <ul class="searchResults_container">
+                <% authors.forEach(author => { %>
+                    <li class="searchResults_item"><%= author.name %></li>
+                <% }) %>
+            </ul>            
+        </div>      
     </div>
 </section>

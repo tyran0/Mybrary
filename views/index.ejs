@@ -1,1 +1,17 @@
-Body
+<section class="section">
+    <header class="section_header">
+        <h2 class="section_title">Recently Added</h2>       
+    </header>
+    <div class="searchResults">
+        <ul class="searchResults_container">
+            <% books.forEach(book => { %>
+                <li class="searchResults_item">
+                    <img src="<%= book.coverImagePath %>"
+                         alt="<%= book.title %> (Cover)"
+                         width="100px" height="150px"
+                    >
+                </li>
+            <% }) %>
+        </ul>            
+    </div>
+</section>
