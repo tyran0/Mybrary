@@ -6,6 +6,7 @@ const fs = require('fs');
 const Book = require('../models/books');
 const Author = require('../models/author');
 const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
+// TODO: Find a better image storing solution
 const uploadPath = path.join('/tmp/client', Book.coverImageBasePath);
 const router = express.Router();
 
