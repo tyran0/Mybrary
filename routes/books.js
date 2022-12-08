@@ -6,7 +6,7 @@ const fs = require('fs');
 const Book = require('../models/books');
 const Author = require('../models/author');
 const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
-const uploadPath = path.join('/client', Book.coverImageBasePath);
+const uploadPath = path.join('/tmp/client', Book.coverImageBasePath);
 const router = express.Router();
 
 const upload = multer({
