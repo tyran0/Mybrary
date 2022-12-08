@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 // TODO: Find a better image storing solution
-const coverImageBasePath = 'tmp/uploads/bookCovers';
+const coverImageBasePath = 'uploads/bookCovers';
 const bookSchema = new mongoose.Schema({
     title: {
         type: String,
