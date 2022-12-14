@@ -14,6 +14,10 @@
             <ul class="searchResults_container">
                 <% authors.forEach(author => { %>
                     <li class="searchResults_item"><%= author.name %></li>
+                    <a href="/authors/<%= author.id %>">View</a>
+                    <a href="/authors/<%= author.id %>/edit">Edit</a>
+                    <%- include('../partials/deleteForm', {
+                        url: `/authors/${author.id}`}) %>
                 <% }) %>
             </ul>            
         </div>      

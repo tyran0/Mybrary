@@ -1,0 +1,26 @@
+<section class="section">
+    <header class="section_header">
+        <h2 class="section_title"><%= author.name %></h2>      
+    </header>
+    <div class="section_content">
+        <header class="section_header">
+            <a class="button" href="/authors/<%= author.id %>/edit">Edit</a>
+            <%- include('../partials/deleteForm', {
+                url: `/authors/${author.id}`}) %>
+        </header>
+        <% if (booksByAuthor.length > 0) { %>
+            <div class="searchResults">
+                <ul class="searchResults_container">
+                    <% booksByAuthor.forEach(book => { %>
+                        <li class="searchResults_item">
+                            <img src="<%= book.coverImagePath %>"
+                                 alt="<%= book.title %> (Cover)"
+                                 width="100px" height="150px"
+                            >
+                        </li>
+                    <% }) %>
+                </ul>            
+            </div>
+        <% } %>
+    </div>
+</section>
