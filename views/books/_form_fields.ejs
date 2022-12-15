@@ -1,6 +1,6 @@
 <div class="form_field">
     <label class="form_label">Title</label>
-    <input class="form_input" type="text" name="title" value="<%= book.name %>">    
+    <input class="form_input" type="text" name="title" value="<%= book.title %>">    
 </div>
 <div class="form_field">
     <label class="form_label">Author</label>
@@ -30,5 +30,5 @@
 </div>
 <div class="form_field">
     <label class="form_label">Description</label>
-    <textarea class="form_input" name="description" value="<%= book.description %>"></textarea>    
+    <textarea class="form_input" name="description"><%= book.description %></textarea>    
 </div>

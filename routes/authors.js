@@ -92,17 +92,21 @@ router.put('/:id', async (req, res) => {
 
 // Delete author
 router.delete('/:id', async (req, res) => {
-    let author
+    let author;
+    let books;
     try {
-        const author = await Author.findById(req.params.id);
+        author = await Author.findById(req.params.id);
+        books = await Book.find({ author: author.id }).limit(6).exec();
         await author.remove();
         res.redirect(`/authors`);
     } catch {
-        if (author == null) {
-            res.redirect('/');
-        } else {
-            res.redirect(`/authors/${author.id}`);        
-        }
+        if (author != null) {
+            res.render('authors/show', {
+                author: author,
+                booksByAuthor: books,
+                errorMessage: 'Could not remove author!'
+            });
+        } else res.redirect('/');    
     }
 });
 

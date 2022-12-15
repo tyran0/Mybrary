@@ -1,0 +1,12 @@
+<section class="section">
+    <header class="section_header">
+        <h2 class="section_title">Edit Book</h2>       
+    </header>
+    <div class="section_content">
+        <form class="form" action="/books/<%= book.id %>?_method=PUT" method="POST">
+            <%- include('_form_fields') %> 
+            <a class="button" href="/books/<%= book.id %>?">Cancel</a>
+            <button class="button" type="submit">Update</button>
+        </form>
+    </div>
+</section>

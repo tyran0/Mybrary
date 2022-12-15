@@ -22,10 +22,11 @@
             <ul class="searchResults_container">
                 <% books.forEach(book => { %>
                     <li class="searchResults_item">
-                        <img src="<%= book.coverImagePath %>"
-                             alt="<%= book.title %> (Cover)"
-                             width="100px" height="150px"
-                        >
+                        <a href="/books/<%= book.id %>">
+                            <img src="<%= book.coverImagePath %>"
+                                alt="<%= book.title %> (Cover)"
+                                width="100px" height="150px">
+                        </a>
                     </li>
                 <% }) %>
             </ul>            
