@@ -1,27 +1,33 @@
-<section class="section">
-    <header class="section_header">
-        <h2 class="section_title"><%= author.name %></h2>      
-    </header>
-    <div class="section_content">
-        <header class="section_header">
-            <a class="button" href="/authors/<%= author.id %>/edit">Edit</a>
-            <%- include('../partials/deleteForm', {
-                url: `/authors/${author.id}`}) %>
-        </header>
-        <% if (booksByAuthor.length > 0) { %>
-            <div class="searchResults">
-                <ul class="searchResults_container">
-                    <% booksByAuthor.forEach(book => { %>
+<% const deleteForm = include('../partials/deleteForm', {
+    url: `/authors/${author.id}`}) %>
+
+<% let list = '' %>
+<% if (booksByAuthor.length > 0) {
+    list = `
+        <div class="section_layout">
+            <ul class="list">
+                ${booksByAuthor.map(book => {
+                    return `
                         <li class="searchResults_item">
-                            <a href="/books/<%= book.id %>">
-                                <img src="<%= book.coverImagePath %>"
-                                    alt="<%= book.title %> (Cover)"
+                            <a href="/books/${book.id}">
+                                <img src="${book.coverImagePath}"
+                                    alt="${book.title} (Cover)"
                                     width="100px" height="150px">
                             </a>
-                        </li>
-                    <% }) %>
-                </ul>            
-            </div>
-        <% } %>
-    </div>
-</section>
+                        </li>                    
+                    `
+                }).join('')}
+            </ul>
+        </div>
+    `
+} %>
+
+<%- include('../partials/section', {
+    sectionTitle: `${author.name}`,
+    sectionContent: `
+        <div class="section_layout">
+            <a class="button" href="/authors/${author.id}/edit">Edit</a>
+            ${deleteForm}
+        </div>
+        ${list}
+    `})%>

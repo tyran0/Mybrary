@@ -1,18 +1,21 @@
-<section class="section">
-    <header class="section_header">
-        <h2 class="section_title">Recently Added</h2>       
-    </header>
-    <div class="searchResults">
-        <ul class="searchResults_container">
-            <% books.forEach(book => { %>
-                <li class="searchResults_item">
-                    <a href="/books/<%= book.id %>">
-                        <img src="<%= book.coverImagePath %>"
-                            alt="<%= book.title %> (Cover)"
+<% const list = `
+    <ul class="list">
+        ${books.map(book => {
+            return `
+                <li class="list_item">
+                    <a href="/books/${book.id}">
+                        <img src="${book.coverImagePath}"
+                            alt="${book.title} (Cover)"
                             width="100px" height="150px">
                     </a>
                 </li>
-            <% }) %>
-        </ul>            
-    </div>
-</section>
+            `
+        }).join('')}
+    </ul>
+` %>
+
+<%- include('partials/section', {
+    sectionTitle: 'Recently added',
+    sectionContent: `
+        <div class="section_layout">${list}</div>
+    `})%> 

@@ -1,25 +1,39 @@
-<section class="section">
-    <header class="section_header">
-        <h2 class="section_title">Search Authors</h2>       
-    </header>
-    <div class="section_content">
-        <form class="form" action="/authors" method="GET">
-            <div class="form_field">
-                <label class="form_label">Name</label>
-                <input class="form_input" type="text" name="name" value="<%= searchOptions.name %>">                
-            </div>
-            <button class="button" type="submit">Search</button>
-        </form>
-        <div class="searchResults">
-            <ul class="searchResults_container">
-                <% authors.forEach(author => { %>
-                    <li class="searchResults_item"><%= author.name %></li>
-                    <a href="/authors/<%= author.id %>">View</a>
-                    <a href="/authors/<%= author.id %>/edit">Edit</a>
-                    <%- include('../partials/deleteForm', {
-                        url: `/authors/${author.id}`}) %>
-                <% }) %>
-            </ul>            
-        </div>      
-    </div>
-</section>
+<% if (searchOptions.name == null) {
+    searchOptions.name = ''
+} %>
+
+<% const form = `
+    <form class="form" action="/authors" method="GET">
+        <div class="form_field">
+            <label class="form_label">Name</label>
+            <input class="form_input" type="text" name="name" value="${searchOptions.name}">
+        </div>
+        <button class="button" type="submit">Search</button>
+    </form>
+` %>
+
+<% const list = `
+    <ul class="list">
+        ${authors.map(author => {
+            return `
+                <li class="list_item">
+                    <span>${author.name}</span>
+                    <div>
+                        <a href="/authors/${author.id}">View</a>
+                        <a href="/authors/${author.id}/edit">Edit</a>                      
+                    </div>
+                </li>
+            `
+        }).join('')}
+    </ul>
+` %>
+
+<%- include('../partials/section', {
+    sectionTitle: 'Authors',
+    sectionContent: `
+        <div class="section_layout">${form}</div>
+        <div class="section_layout">
+            ${list}
+            <a href="/authors/new">Add Author</a>
+        </div>
+    `})%> 

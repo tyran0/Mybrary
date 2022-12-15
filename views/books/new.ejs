@@ -1,12 +1,13 @@
-<section class="section">
-    <header class="section_header">
-        <h2 class="section_title">New Book</h2>       
-    </header>
-    <div class="section_content">
-        <form class="form" action="/books" method="POST">
-            <%- include('_form_fields') %> 
-            <a class="button" href="/books">Cancel</a>
-            <button class="button" type="submit">Create</button>
-        </form>  
-    </div>
-</section>
+<% const formFields = include('_form_fields') %>
+
+<%- include('../partials/section', {
+    sectionTitle: 'New Book',
+    sectionContent: `
+        <div class="section_layout">
+            <form class="form" action="/books" method="POST">
+                ${formFields}
+                <a class="button" href="/books">Cancel</a>
+                <button class="button" type="submit">Create</button>
+            </form>        
+        </div>
+    `})%>

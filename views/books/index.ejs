@@ -1,35 +1,47 @@
-<section class="section">
-    <header class="section_header">
-        <h2 class="section_title">All Books</h2>       
-    </header>
-    <div class="section_content">
-        <form class="form" action="/books" method="GET">
-            <div class="form_field">
-                <label class="form_label">Title</label>
-                <input class="form_input" type="text" name="title" value="<%= searchOptions.title %>">                
-            </div>
-            <div class="form_field">
-                <label class="form_label">Published After</label>
-                <input class="form_input" type="date" name="publishedAfter" value="<%= searchOptions.publishedAfter %>">                
-            </div>
-            <div class="form_field">
-                <label class="form_label">Published Before</label>
-                <input class="form_input" type="date" name="publishedBefore" value="<%= searchOptions.publishedBefore %>">                
-            </div>
-            <button class="button" type="submit">Search</button>
-        </form>
-        <div class="searchResults">
-            <ul class="searchResults_container">
-                <% books.forEach(book => { %>
-                    <li class="searchResults_item">
-                        <a href="/books/<%= book.id %>">
-                            <img src="<%= book.coverImagePath %>"
-                                alt="<%= book.title %> (Cover)"
-                                width="100px" height="150px">
-                        </a>
-                    </li>
-                <% }) %>
-            </ul>            
+<% if (searchOptions.title == null) {
+    searchOptions.title = '';
+} %>
+
+<% const form = `
+    <form class="form" action="/books" method="GET">
+        <div class="form_field">
+            <label class="form_label">Title</label>
+            <input class="form_input" type="text" name="title" value="${searchOptions.title}">
         </div>
-    </div>
-</section>
+        <div class="form_field">
+            <label class="form_label">Published After</label>
+            <input class="form_input" type="date" name="publishedAfter" value="${searchOptions.publishedAfter}">
+        </div>
+        <div class="form_field">
+            <label class="form_label">Published Before</label>
+            <input class="form_input" type="date" name="publishedBefore" value="${searchOptions.publishedBefore}">
+        </div>
+        <button class="button" type="submit">Search</button>
+    </form>
+` %>
+
+<% const list = `
+    <ul class="list">
+        ${books.map(book => {
+            return `
+                <li class="list_item">
+                    <a href="/books/${book.id}">
+                        <img src="${book.coverImagePath}"
+                            alt="${book.title} (Cover)"
+                            width="100px" height="150px">
+                    </a>
+                </li>
+            `
+        }).join('')}
+    </ul>
+` %>
+
+<%- include('../partials/section', {
+    sectionTitle: 'Books',
+    sectionContent: `
+        <div class="section_layout">${form}</div>
+        <div class="section_layout">
+            ${list}
+            <a href="/books/new">Add Book</a>
+        </div>
+    `})%>
